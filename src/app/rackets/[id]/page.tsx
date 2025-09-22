@@ -5,6 +5,12 @@ type Props = {
   params: Promise<{ id: string }>;
 };
 
+export async function generateStaticParams() {
+  return rackets.slice(0, 3).map((racket) => {
+    return { id: String(racket.id) };
+  });
+}
+
 const Racket = async ({ params }: Props) => {
   const { id } = await params;
 
