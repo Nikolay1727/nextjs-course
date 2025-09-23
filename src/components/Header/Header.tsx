@@ -7,7 +7,7 @@ export const Header = () => {
   return (
     <Container>
       <TitleBox>
-        <PageTitle>tennis store</PageTitle>
+        <PageTitle title="tennis store" />
       </TitleBox>
       <MenuBox>
         <NavMenu />

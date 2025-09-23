@@ -1,6 +1,6 @@
 "use client";
 import { Container } from "./styles";
 
-export const PageTitle = ({ children }: { children: string }) => (
-  <Container>{children.toUpperCase()}</Container>
+export const PageTitle = ({ title }: { title: string }) => (
+  <Container>{title.toUpperCase()}</Container>
 );
