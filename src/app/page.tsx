@@ -1,5 +1,8 @@
+import { MainPage } from "@/components";
+import { rackets } from "../../public";
+
 const Page = () => {
-  return <div>Home Page</div>;
+  return <MainPage rackets={rackets.slice(0, 3)} />;
 };
 
 export default Page;
