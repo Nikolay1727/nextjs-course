@@ -1,4 +1,4 @@
-import { RacketDetailCard } from "@/components";
+import { RacketDetailPage } from "@/components";
 import { rackets } from "../../../../public";
 
 type Props = {
@@ -14,7 +14,7 @@ export async function generateStaticParams() {
 const Racket = async ({ params }: Props) => {
   const { id } = await params;
 
-  return <RacketDetailCard racket={rackets.find((item) => item.id === +id)} />;
+  return <RacketDetailPage racket={rackets.find((item) => item.id === +id)} />;
 };
 
 export default Racket;

@@ -9,7 +9,7 @@ import {
   RightContent,
 } from "./styles";
 
-export const RacketDetailCard = ({ racket }: { racket?: RacketType }) => {
+export const RacketDetailPage = ({ racket }: { racket?: RacketType }) => {
   if (!racket) return null;
 
   return (
