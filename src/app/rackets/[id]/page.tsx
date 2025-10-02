@@ -1,4 +1,4 @@
-import { RacketDetailPage, SuspenseWrapper } from "@/components";
+import { RacketDetailPage } from "@/components";
 import { getRacketById } from "@/services";
 import { notFound } from "next/navigation";
 
@@ -11,18 +11,14 @@ const Racket = async ({ params }: Props) => {
   const { isError, data } = await getRacketById({ id });
 
   if (isError) {
-      return "error";
-    }
-  
-    if (!data) {
-      return notFound();
-    }
+    return "error";
+  }
 
-  return (
-    <SuspenseWrapper>
-      <RacketDetailPage racket={data} />
-    </SuspenseWrapper>
-  );
+  if (!data) {
+    return notFound();
+  }
+
+  return <RacketDetailPage racket={data} />;
 };
 
 export default Racket;

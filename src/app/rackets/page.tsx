@@ -1,4 +1,4 @@
-import { RacketCardsBox, SuspenseWrapper } from "@/components";
+import { RacketCardsBox } from "@/components";
 import { getRackets } from "@/services";
 import { notFound } from "next/navigation";
 
@@ -13,11 +13,7 @@ const Rackets = async () => {
     return notFound();
   }
 
-  return (
-    <SuspenseWrapper>
-      <RacketCardsBox rackets={data} />
-    </SuspenseWrapper>
-  );
+  return <RacketCardsBox rackets={data} />;
 };
 
 export default Rackets;

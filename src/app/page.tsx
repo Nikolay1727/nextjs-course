@@ -3,7 +3,6 @@ import {
   MainSection,
   MainSectionContent,
   MainSectionHeader,
-  SuspenseWrapper,
 } from "@/components";
 import { getRackets, getTop10Rackets } from "@/services";
 import { PATH } from "@/shared";
@@ -28,26 +27,22 @@ const Page = async () => {
 
   return (
     <MainPage>
-      <SuspenseWrapper>
-        <MainSection>
-          <MainSectionHeader
-            title="Ракетки"
-            href={PATH.rackets}
-            linkTitle="Все"
-          />
-          <MainSectionContent rackets={rackets} />
-        </MainSection>
-      </SuspenseWrapper>
-      <SuspenseWrapper>
-        <MainSection>
-          <MainSectionHeader
-            title="Топ-10 ракеток"
-            href={PATH.top10Rackets}
-            linkTitle="Топ-10"
-          />
-          <MainSectionContent rackets={top10Rackets} />
-        </MainSection>
-      </SuspenseWrapper>
+      <MainSection>
+        <MainSectionHeader
+          title="Ракетки"
+          href={PATH.rackets}
+          linkTitle="Все"
+        />
+        <MainSectionContent rackets={rackets} />
+      </MainSection>
+      <MainSection>
+        <MainSectionHeader
+          title="Топ-10 ракеток"
+          href={PATH.top10Rackets}
+          linkTitle="Топ-10"
+        />
+        <MainSectionContent rackets={top10Rackets} />
+      </MainSection>
     </MainPage>
   );
 };
