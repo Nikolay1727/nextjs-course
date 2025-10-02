@@ -5,3 +5,4 @@ export * from "./NavMenu";
 export * from "./RacketBigCard";
 export * from "./RacketCardsBox";
 export * from "./RacketDetailPage";
+export * from "./SuspenseWrapper";
