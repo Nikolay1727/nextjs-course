@@ -1,20 +1,28 @@
-import { RacketDetailPage } from "@/components";
-import { rackets } from "../../../../public";
+import { RacketDetailPage, SuspenseWrapper } from "@/components";
+import { getRacketById } from "@/services";
+import { notFound } from "next/navigation";
 
 type Props = {
   params: Promise<{ id: string }>;
 };
 
-export async function generateStaticParams() {
-  return rackets.slice(0, 3).map((racket) => {
-    return { id: String(racket.id) };
-  });
-}
-
 const Racket = async ({ params }: Props) => {
   const { id } = await params;
+  const { isError, data } = await getRacketById({ id });
 
-  return <RacketDetailPage racket={rackets.find((item) => item.id === +id)} />;
+  if (isError) {
+      return "error";
+    }
+  
+    if (!data) {
+      return notFound();
+    }
+
+  return (
+    <SuspenseWrapper>
+      <RacketDetailPage racket={data} />
+    </SuspenseWrapper>
+  );
 };
 
 export default Racket;
