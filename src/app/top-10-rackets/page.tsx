@@ -1,9 +1,9 @@
 import { RacketCardsBox } from "@/components";
-import { getRackets } from "@/services";
+import { getTop10Rackets } from "@/services";
 import { notFound } from "next/navigation";
 
-const Rackets = async () => {
-  const { isError, data } = await getRackets({ limit: 20 });
+const Top10Rackets = async () => {
+  const { isError, data = [] } = await getTop10Rackets();
 
   if (isError) {
     return "error";
@@ -16,4 +16,4 @@ const Rackets = async () => {
   return <RacketCardsBox rackets={data} />;
 };
 
-export default Rackets;
+export default Top10Rackets;

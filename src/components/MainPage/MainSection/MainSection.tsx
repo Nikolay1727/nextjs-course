@@ -6,6 +6,6 @@ interface Props {
   children: ReactNode;
 }
 
-export const MainPage = ({ children }: Props) => (
+export const MainSection = ({ children }: Props) => (
   <Container>{children}</Container>
 );

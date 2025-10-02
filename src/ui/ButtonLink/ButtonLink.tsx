@@ -4,7 +4,7 @@ import { StyledButtonLink } from "./styles";
 
 interface Props {
   href: string;
-  title: string;
+  title: ReactNode;
   icon?: ReactNode;
 }
 

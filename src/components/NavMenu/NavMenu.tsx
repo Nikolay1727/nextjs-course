@@ -17,6 +17,12 @@ export const NavMenu = () => {
       >
         Ракетки
       </StyledLink>
+      <StyledLink
+        data-is-active={pathname === PATH.top10Rackets}
+        href={PATH.top10Rackets}
+      >
+        Топ-10
+      </StyledLink>
     </Container>
   );
 };

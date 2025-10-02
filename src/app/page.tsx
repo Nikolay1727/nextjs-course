@@ -1,8 +1,50 @@
-import { MainPage } from "@/components";
-import { rackets } from "../../public";
+import {
+  MainPage,
+  MainSection,
+  MainSectionContent,
+  MainSectionHeader,
+} from "@/components";
+import { getRackets, getTop10Rackets } from "@/services";
+import { PATH } from "@/shared";
+import { notFound } from "next/navigation";
 
-const Page = () => {
-  return <MainPage rackets={rackets.slice(0, 3)} />;
+const Page = async () => {
+  const racketsPromise = getRackets({});
+  const top10RacketsPromise = getTop10Rackets();
+
+  const [
+    { isError: isRacketsError, data: rackets },
+    { isError: isTop10Rackets, data: top10Rackets },
+  ] = await Promise.all([racketsPromise, top10RacketsPromise]);
+
+  if (isRacketsError || isTop10Rackets) {
+    return "error";
+  }
+
+  if (!rackets || !top10Rackets) {
+    return notFound();
+  }
+
+  return (
+    <MainPage>
+      <MainSection>
+        <MainSectionHeader
+          title="Ракетки"
+          href={PATH.rackets}
+          linkTitle="Все"
+        />
+        <MainSectionContent rackets={rackets} />
+      </MainSection>
+      <MainSection>
+        <MainSectionHeader
+          title="Топ-10 ракеток"
+          href={PATH.top10Rackets}
+          linkTitle="Топ-10"
+        />
+        <MainSectionContent rackets={top10Rackets} />
+      </MainSection>
+    </MainPage>
+  );
 };
 
 export default Page;
