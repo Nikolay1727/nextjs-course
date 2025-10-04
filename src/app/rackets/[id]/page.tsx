@@ -1,9 +1,26 @@
 import { RacketDetailPage } from "@/components";
-import { getRacketById } from "@/services";
+import { getMetaRacketById, getRacketById } from "@/services";
 import { notFound } from "next/navigation";
 
 type Props = {
   params: Promise<{ id: string }>;
+};
+
+export const generateMetadata = async ({ params }: Props) => {
+  const { id } = await params;
+
+  const { data } = await getMetaRacketById({ id });
+
+  if (!data) {
+    return {
+      title: `Racket - ${id}`,
+    };
+  }
+
+  return {
+    title: data.name,
+    description: data.description,
+  };
 };
 
 const Racket = async ({ params }: Props) => {
