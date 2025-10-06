@@ -1,27 +1,28 @@
-"use client";
-import { RacketType } from "@/shared";
-import {
-  BoldText,
-  Container,
-  Description,
-  ImageBox,
-  LeftContent,
-  RightContent,
-} from "./styles";
+import { getRacketById } from "@/services";
+import Image from "next/image";
+import { notFound } from "next/navigation";
 
-export const RacketDetailPage = ({ racket }: { racket?: RacketType }) => {
-  if (!racket) return null;
+export const RacketDetailPage = async ({ id }: { id: string }) => {
+  const { data, isError } = await getRacketById({ id });
+
+  if (isError) {
+    throw new Error("error");
+  }
+
+  if (!data) {
+    return notFound();
+  }
 
   return (
-    <Container>
-      <LeftContent>
-        <BoldText>{racket.name}</BoldText>
-        <Description>{racket.description}</Description>
-      </LeftContent>
-      <ImageBox src={racket.imageUrl} />
-      <RightContent>
-        <BoldText>{racket.price}</BoldText>
-      </RightContent>
-    </Container>
+    <div>
+      <div>
+        <div>{data.name}</div>
+        <div>{data.description}</div>
+      </div>
+      <Image src={data.imageUrl} alt="" height={500} width={350} />
+      <div>
+        <div>{data.price}</div>
+      </div>
+    </div>
   );
 };

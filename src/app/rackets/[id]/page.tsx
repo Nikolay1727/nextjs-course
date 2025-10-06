@@ -1,5 +1,5 @@
-import { RacketDetailPage } from "@/components";
-import { getMetaRacketById, getRacketById } from "@/services";
+import { RacketDetailPage, SuspenseWrapper } from "@/components";
+import { getMetaRacketById } from "@/services";
 import { notFound } from "next/navigation";
 
 type Props = {
@@ -25,17 +25,21 @@ export const generateMetadata = async ({ params }: Props) => {
 
 const Racket = async ({ params }: Props) => {
   const { id } = await params;
-  const { isError, data } = await getRacketById({ id });
+  const { data, isError } = await getMetaRacketById({ id });
 
   if (isError) {
-    return "error";
+    throw new Error("error");
   }
 
   if (!data) {
     return notFound();
   }
 
-  return <RacketDetailPage racket={data} />;
+  return (
+    <SuspenseWrapper>
+      <RacketDetailPage id={id} />
+    </SuspenseWrapper>
+  );
 };
 
 export default Racket;
