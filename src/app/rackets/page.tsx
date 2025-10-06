@@ -6,7 +6,7 @@ const Rackets = async () => {
   const { isError, data } = await getRackets({ limit: 20 });
 
   if (isError) {
-    return "error";
+    throw new Error("error");
   }
 
   if (!data) {

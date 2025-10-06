@@ -18,7 +18,7 @@ const Page = async () => {
   ] = await Promise.all([racketsPromise, top10RacketsPromise]);
 
   if (isRacketsError || isTop10Rackets) {
-    return "error";
+    throw new Error("error");
   }
 
   if (!rackets || !top10Rackets) {

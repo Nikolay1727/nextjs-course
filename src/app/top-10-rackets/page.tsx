@@ -6,7 +6,7 @@ const Top10Rackets = async () => {
   const { isError, data = [] } = await getTop10Rackets();
 
   if (isError) {
-    return "error";
+    throw new Error("error");
   }
 
   if (!data) {
