@@ -1,7 +1,7 @@
 "use client";
 
 const GlobalError = () => (
-  <html>
+  <html lang="en">
     <body>
       <div>global error</div>
     </body>
