@@ -1,6 +1,13 @@
 import { Footer, Header } from "@/components";
 import { GlobalStyles } from "@/styled";
 import { PageContentBox } from "@/ui";
+import { Metadata } from "next";
+import NextTopLoader from "nextjs-toploader";
+
+export const metadata: Metadata = {
+  title: "Tennis shop",
+  description: "shared metadata",
+};
 
 const RootLayout = ({
   children,
@@ -10,6 +17,7 @@ const RootLayout = ({
   return (
     <html lang="en">
       <body>
+        <NextTopLoader />
         <Header />
         <PageContentBox>{children}</PageContentBox>
         <Footer />

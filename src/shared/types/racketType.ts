@@ -16,3 +16,9 @@ export interface RacketType {
   brandId: number;
   brand: BrandType;
 }
+
+export interface MetaRacketType {
+  id: number;
+  name: string;
+  description: string;
+}
